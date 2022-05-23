@@ -68,6 +68,8 @@ int main(int Argc, const char *Argv[]) {
       PO::Description("Enable Multiple memories proposal"sv));
   PO::Option<PO::Toggle> PropTailCall(
       PO::Description("Enable Tail-call proposal"sv));
+  PO::Option<PO::Toggle> PropExceptionHandling(
+      PO::Description("Enable Exception handling proposal"sv));
   PO::Option<PO::Toggle> PropExtendConst(
       PO::Description("Enable Extended-const proposal"sv));
   PO::Option<PO::Toggle> PropAll(PO::Description("Enable all features"sv));
@@ -118,6 +120,7 @@ int main(int Argc, const char *Argv[]) {
       .add_option("disable-simd"sv, PropSIMD)
       .add_option("enable-multi-memory"sv, PropMultiMem)
       .add_option("enable-tail-call"sv, PropTailCall)
+      .add_option("enable-exceptions"sv, PropExceptionHandling)
       .add_option("enable-extended-const"sv, PropExtendConst)
       .add_option("enable-all"sv, PropAll)
       .add_option("time-limit"sv, TimeLim)
@@ -163,12 +166,16 @@ int main(int Argc, const char *Argv[]) {
   if (PropTailCall.value()) {
     Conf.addProposal(WasmEdge::Proposal::TailCall);
   }
+  if (PropExceptionHandling.value())) {
+    Conf.addProposal(WasmEdge::Proposal::ExceptionHandling);
+  }
   if (PropExtendConst.value()) {
     Conf.addProposal(WasmEdge::Proposal::ExtendedConst);
   }
   if (PropAll.value()) {
     Conf.addProposal(WasmEdge::Proposal::MultiMemories);
     Conf.addProposal(WasmEdge::Proposal::TailCall);
+    Conf.addProposal(WasmEdge::Proposal::ExceptionHandling);
     Conf.addProposal(WasmEdge::Proposal::ExtendedConst);
   }
 
