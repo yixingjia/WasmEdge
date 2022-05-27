@@ -1,0 +1,1 @@
+initSidebarItems({"fn":[["full_version","Full version."],["load_plugin_from_default_paths","Loads plugins from default paths."],["log_debug_info","Logs the debug information."],["log_error_info","Logs the error information."],["semv_version","Semantic Version."]]});
